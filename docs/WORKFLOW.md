@@ -27,9 +27,20 @@ Before a feature is marked "Done", it must survive an adversarial review.
 - **Action:** Scout for edge cases (e.g., Streaming JSON crashes, missing optional fields).
 - **Goal:** Ensure no implicit `any`, no unescaped entities, and absolute Type Safety.
 
+## Git Branching Strategy & Pull Requests
+We strictly follow a structured GitFlow / Feature Branch workflow. **Direct commits to `main` are forbidden for features.**
+
+### Branch Naming Conventions
+- `main`: Production-ready code only.
+- `develop`: Integration branch for testing before release.
+- `feat/<feature-name>`: For new features (e.g., `feat/visual-editor`).
+- `fix/<bug-name>`: For bug fixes (e.g., `fix/streaming-crash`).
+- `docs/<doc-name>`: For documentation updates.
+
 ### Step 5: Git & Documentation Update
 - **Action:** Stage and commit changes using Conventional Commits (`feat:`, `fix:`, `refactor:`).
-- **Action:** Push to GitHub.
+- **Action:** Push the feature branch to GitHub (`git push origin feat/xxx`).
+- **Action:** Create a Pull Request (PR) merging into `develop`.
 - **Action:** Update `README.md` or `ARCHITECTURE.md` if systemic changes were introduced.
 
 ---
