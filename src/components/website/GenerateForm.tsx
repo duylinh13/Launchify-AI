@@ -152,8 +152,8 @@ export function GenerateForm() {
         <div className="flex-1 overflow-y-auto custom-scrollbar pt-14 bg-background w-full h-full">
           {object?.sections ? (
             <div className="animate-in fade-in duration-1000 w-full">
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              <SectionRenderer sections={object.sections as any} />
+              {/* Safely filter out partial streaming sections that don't have enough data to render yet */}
+              <SectionRenderer sections={(object.sections.filter(s => s && s.type && s.content) as any) || []} />
             </div>
           ) : (
             <div className="h-full flex flex-col items-center justify-center text-muted-foreground p-8 text-center animate-in fade-in duration-500">
