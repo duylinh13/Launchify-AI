@@ -26,7 +26,7 @@ export function LoginForm() {
   const [state, formAction] = useFormState(login, initialState)
 
   return (
-    <Card className="w-[400px] shadow-md">
+    <Card className="w-full max-w-[400px] mx-4 sm:mx-0 shadow-md">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">Welcome back</CardTitle>
         <CardDescription className="text-center">

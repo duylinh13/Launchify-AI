@@ -58,9 +58,9 @@ export function EditorClient({ initialData, projectId }: EditorClientProps) {
         </Button>
       </div>
 
-      <div className="flex flex-1 w-full overflow-hidden">
+      <div className="flex flex-col lg:flex-row flex-1 w-full overflow-hidden">
         {/* Left Sidebar (Configuration) */}
-        <div className="w-80 border-r bg-muted/30 flex flex-col h-full overflow-hidden shrink-0">
+        <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r bg-muted/30 flex flex-col h-[40vh] lg:h-full overflow-hidden shrink-0">
           <EditorSidebar />
         </div>
 

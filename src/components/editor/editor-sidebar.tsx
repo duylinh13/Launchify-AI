@@ -54,6 +54,9 @@ export function EditorSidebar() {
     const section = data.sections[activeSectionIndex]
     if (!section) return null
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const content = section.content as any;
+
     return (
       <div className="flex flex-col h-full">
         <div className="p-4 border-b bg-background flex items-center justify-between shrink-0">
@@ -67,12 +70,12 @@ export function EditorSidebar() {
             <>
               <DebouncedInput 
                 label="Headline" 
-                initialValue={section.content?.headline || ''}
+                initialValue={content?.headline || ''}
                 onDebounceChange={(val) => updateSection(activeSectionIndex, { headline: val })}
               />
               <DebouncedInput 
                 label="Subheadline" 
-                initialValue={section.content?.subheadline || ''}
+                initialValue={content?.subheadline || ''}
                 onDebounceChange={(val) => updateSection(activeSectionIndex, { subheadline: val })}
               />
             </>
@@ -81,12 +84,12 @@ export function EditorSidebar() {
             <>
               <DebouncedInput 
                 label="Title" 
-                initialValue={section.content?.title || ''}
+                initialValue={content?.title || ''}
                 onDebounceChange={(val) => updateSection(activeSectionIndex, { title: val })}
               />
               <DebouncedInput 
                 label="Description" 
-                initialValue={section.content?.description || ''}
+                initialValue={content?.description || ''}
                 onDebounceChange={(val) => updateSection(activeSectionIndex, { description: val })}
               />
             </>
@@ -95,7 +98,7 @@ export function EditorSidebar() {
             <>
               <DebouncedInput 
                 label="Title" 
-                initialValue={section.content?.title || ''}
+                initialValue={content?.title || ''}
                 onDebounceChange={(val) => updateSection(activeSectionIndex, { title: val })}
               />
               <div className="text-xs text-muted-foreground mt-4">
@@ -130,13 +133,15 @@ export function EditorSidebar() {
             <div className="space-y-2">
               {data.sections.map((section, idx) => {
                 if (!section) return null
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const content = section.content as any;
                 return (
                   <SortableSectionItem
                     key={`section-${idx}`}
                     id={`section-${idx}`}
                     index={idx}
                     type={section.type || 'Unknown'}
-                    title={section.content?.headline || section.content?.title || 'No title'}
+                    title={content?.headline || content?.title || 'No title'}
                     onClick={() => setActiveSection(idx)}
                   />
                 )

@@ -1,15 +1,21 @@
 'use client'
 
-import { useState } from 'react'
-import { experimental_useObject as useObject } from 'ai/react'
-import { WebsiteSchema, type WebsiteConfig } from '@/lib/validations/section'
+import { useState, useTransition } from 'react'
+import { experimental_useObject as useObject } from '@ai-sdk/react'
+import { WebsiteSchema } from '@/lib/validations/section'
 import { SectionRenderer } from '@/components/website/SectionRenderer'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { createProjectFromGeneration } from '@/app/actions/project'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { Loader2, Globe, Sparkles, Paintbrush, Target, Briefcase, Users, LayoutDashboard } from 'lucide-react'
 
 export function GenerateForm() {
+  const router = useRouter()
+  const [isSaving, startTransition] = useTransition()
   const [formData, setFormData] = useState({
     businessName: 'Coffee House',
     businessType: 'Coffee Shop',
@@ -17,11 +23,11 @@ export function GenerateForm() {
     goal: 'Increase foot traffic and online orders',
     tone: 'Warm, modern, and inviting',
     style: 'Minimal',
-    primaryColor: '#000000',
+    primaryColor: '#6366f1',
   })
 
   // useObject handles the streaming JSON and partial parsing
-  const { object, submit, isLoading, error } = useObject<WebsiteConfig>({
+  const { object, submit, isLoading, error } = useObject({
     api: '/api/generate',
     schema: WebsiteSchema,
   })
@@ -31,60 +37,85 @@ export function GenerateForm() {
     submit(formData)
   }
 
+  const handleSaveToProject = () => {
+    if (!object) return
+    startTransition(async () => {
+      const result = await createProjectFromGeneration(object)
+      if (result.error) {
+        toast.error(result.error)
+      } else if (result.projectId) {
+        toast.success('Website saved successfully!')
+        router.push(`/project/${result.projectId}/editor`)
+      }
+    })
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+  const isFinished = !isLoading && object?.sections && object.sections.length > 0;
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[calc(100vh-120px)]">
+    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-[calc(100vh-120px)] lg:h-[calc(100vh-120px)] relative">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10" />
+
       {/* Input Form Column */}
-      <div className="overflow-y-auto pr-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Describe Your Business</CardTitle>
-            <CardDescription>
-              Provide details and our AI will generate a tailored website instantly.
+      <div className="lg:col-span-4 lg:overflow-y-auto lg:pr-2 pb-8 custom-scrollbar shrink-0">
+        <Card className="border-primary/10 shadow-xl shadow-primary/5 bg-background/60 backdrop-blur-md rounded-3xl overflow-hidden">
+          <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-8">
+            <CardTitle className="text-2xl font-extrabold flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-primary" />
+              Website Architect
+            </CardTitle>
+            <CardDescription className="text-base">
+              Detail your vision, and watch our AI instantly construct your high-converting landing page.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <CardContent className="pt-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="businessName">Business Name</Label>
-                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required />
+                <Label htmlFor="businessName" className="flex items-center gap-2 text-muted-foreground"><Briefcase className="w-4 h-4"/> Business Name</Label>
+                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="businessType">Business Type</Label>
-                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required />
+                <Label htmlFor="businessType" className="flex items-center gap-2 text-muted-foreground"><LayoutDashboard className="w-4 h-4"/> Business Type</Label>
+                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="audience">Target Audience</Label>
-                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required />
+                <Label htmlFor="audience" className="flex items-center gap-2 text-muted-foreground"><Users className="w-4 h-4"/> Target Audience</Label>
+                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="goal">Primary Goal</Label>
-                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required />
+                <Label htmlFor="goal" className="flex items-center gap-2 text-muted-foreground"><Target className="w-4 h-4"/> Primary Goal</Label>
+                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="tone">Brand Tone</Label>
-                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required />
+                <Label htmlFor="tone" className="flex items-center gap-2 text-muted-foreground"><Sparkles className="w-4 h-4"/> Brand Tone</Label>
+                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="style">Visual Style</Label>
-                <Input id="style" name="style" value={formData.style} onChange={handleChange} required />
+                <Label htmlFor="style" className="flex items-center gap-2 text-muted-foreground"><Paintbrush className="w-4 h-4"/> Visual Style</Label>
+                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="primaryColor">Primary Color (Hex)</Label>
-                <Input id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required />
+              <div className="space-y-2 pb-2">
+                <Label htmlFor="primaryColor" className="flex items-center gap-2 text-muted-foreground"><Paintbrush className="w-4 h-4"/> Primary Color (Hex)</Label>
+                <div className="flex gap-3">
+                  <Input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-14 h-11 p-1 rounded-xl cursor-pointer bg-background/50 border-border" />
+                  <Input type="text" id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required className="h-11 flex-1 rounded-xl font-mono bg-background/50 uppercase" />
+                </div>
               </div>
               
               {error && (
-                <div className="text-sm text-red-500 font-medium">
+                <div className="p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm text-destructive font-medium">
                   {error.message}
                 </div>
               )}
 
-              <Button type="submit" disabled={isLoading} className="w-full">
-                {isLoading ? 'Generating Website...' : 'Generate Website'}
+              <Button type="submit" disabled={isLoading} className="w-full h-12 rounded-xl text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 border-0">
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Sparkles className="w-5 h-5 mr-2" />}
+                {isLoading ? 'Architecting Website...' : 'Generate Website'}
               </Button>
             </form>
           </CardContent>
@@ -92,19 +123,55 @@ export function GenerateForm() {
       </div>
 
       {/* Preview Column (Streaming) */}
-      <div className="border rounded-xl bg-muted/10 overflow-hidden flex flex-col shadow-sm">
-        <div className="bg-muted p-3 border-b flex justify-between items-center">
-          <span className="text-sm font-semibold text-muted-foreground">Live Preview</span>
-          {isLoading && <span className="text-xs text-primary animate-pulse">Streaming...</span>}
+      <div className="lg:col-span-8 border rounded-3xl bg-muted/20 overflow-hidden flex flex-col shadow-2xl relative ring-1 ring-border/50 h-[600px] lg:h-auto mb-8 lg:mb-0">
+        {/* Browser Mockup Header */}
+        <div className="bg-background/80 backdrop-blur-md p-3 border-b flex justify-between items-center h-14 shrink-0 absolute top-0 left-0 right-0 z-20">
+          <div className="flex gap-2 items-center pl-2">
+            <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-sm" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-sm" />
+            <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-sm" />
+          </div>
+          
+          <div className="px-4 py-1.5 rounded-full bg-muted/80 text-xs text-muted-foreground font-medium flex items-center gap-2 max-w-sm w-full justify-center shadow-inner">
+            <Globe className="w-3.5 h-3.5" />
+            {formData.businessName ? formData.businessName.toLowerCase().replace(/\s+/g, '-') + '.com' : 'preview.com'}
+          </div>
+          
+          <div className="flex items-center pr-2 min-w-[120px] justify-end">
+            {isLoading && <span className="text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500 animate-pulse flex items-center gap-1.5"><Loader2 className="w-3.5 h-3.5 animate-spin text-primary"/> Generating...</span>}
+            {isFinished && (
+              <Button size="sm" onClick={handleSaveToProject} disabled={isSaving} className="gap-2 rounded-full h-8 px-4 bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
+                {isSaving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+                {isSaving ? 'Saving...' : 'Save & Edit'}
+              </Button>
+            )}
+          </div>
         </div>
-        <div className="flex-1 overflow-y-auto bg-background">
-          {/* We only render sections if the partial object has them */}
+        
+        {/* Render Area */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar pt-14 bg-background w-full h-full">
           {object?.sections ? (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            <SectionRenderer sections={object.sections as any} />
+            <div className="animate-in fade-in duration-1000 w-full">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              <SectionRenderer sections={object.sections as any} />
+            </div>
           ) : (
-            <div className="h-full flex items-center justify-center text-muted-foreground p-8 text-center">
-              {isLoading ? 'AI is thinking...' : 'Fill out the form and hit Generate to see your website.'}
+            <div className="h-full flex flex-col items-center justify-center text-muted-foreground p-8 text-center animate-in fade-in duration-500">
+              <div className="w-24 h-24 mb-6 rounded-full bg-primary/5 flex items-center justify-center ring-8 ring-primary/5">
+                {isLoading ? (
+                  <Loader2 className="w-10 h-10 text-primary animate-spin" />
+                ) : (
+                  <Globe className="w-10 h-10 text-primary/40" />
+                )}
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                {isLoading ? 'Architecting your site...' : 'Ready to build'}
+              </h3>
+              <p className="max-w-sm text-sm">
+                {isLoading 
+                  ? 'Our AI is currently analyzing your business requirements and designing the perfect layout.' 
+                  : 'Fill out the specifications on the left and click Generate to see your website come to life in real-time.'}
+              </p>
             </div>
           )}
         </div>

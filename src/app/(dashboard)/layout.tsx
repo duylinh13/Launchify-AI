@@ -20,7 +20,7 @@ export default function DashboardLayout({
           </form>
         </div>
       </header>
-      <main className="flex-1 space-y-4 p-8 pt-6 container">{children}</main>
+      <main className="flex-1 space-y-4 p-4 md:p-8 md:pt-6 container mx-auto">{children}</main>
     </div>
   )
 }

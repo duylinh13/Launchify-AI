@@ -103,10 +103,68 @@ export async function getProjectContent(projectId: string) {
       theme: { style: 'modern', primaryColor: '#000000' } // Default theme for MVP
     },
     sections: sections.map(s => ({
-      type: s.type as "hero" | "about" | "faq",
-      content: s.content_json as Record<string, unknown>
-    }))
+      type: s.type,
+      content: s.content_json
+    })) as WebsiteConfig['sections']
   }
 
   return { data: websiteConfig }
+}
+
+export async function createProjectFromGeneration(payload: unknown) {
+  const result = WebsiteSchema.safeParse(payload)
+  if (!result.success) return { error: 'Invalid generation data' }
+  const data: WebsiteConfig = result.data
+
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'Unauthorized' }
+
+  // 1. Get user's first workspace (MVP approach)
+  const { data: members, error: memberErr } = await supabase
+    .from('workspace_members')
+    .select('workspace_id')
+    .eq('user_id', user.id)
+    .limit(1)
+
+  if (memberErr || !members || members.length === 0) {
+    return { error: 'No workspace found. Please contact support.' }
+  }
+  const workspaceId = members[0].workspace_id
+
+  // 2. Create Project
+  const { data: project, error: projErr } = await supabase
+    .from('projects')
+    .insert({
+      workspace_id: workspaceId,
+      name: data.site.name || 'Generated Website'
+    })
+    .select('id')
+    .single()
+
+  if (projErr || !project) return { error: 'Failed to create project' }
+
+  // 3. Create Page
+  const { data: page, error: pageErr } = await supabase
+    .from('pages')
+    .insert({ project_id: project.id, title: 'Home', slug: 'home' })
+    .select('id')
+    .single()
+    
+  if (pageErr || !page) return { error: 'Failed to create page' }
+
+  // 4. Create Sections
+  const insertPayload = data.sections.map((section, index) => ({
+    page_id: page.id,
+    type: section.type,
+    sort_order: index,
+    content_json: section.content
+  }))
+
+  if (insertPayload.length > 0) {
+    const { error: insertErr } = await supabase.from('sections').insert(insertPayload)
+    if (insertErr) return { error: 'Failed to save sections' }
+  }
+
+  return { success: true, projectId: project.id }
 }

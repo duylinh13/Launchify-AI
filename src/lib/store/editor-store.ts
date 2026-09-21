@@ -25,9 +25,9 @@ export const useEditorStore = create<EditorState>((set) => ({
     if (!state.data || !state.data.sections) return state
     
     const newSections = [...state.data.sections]
-    // @ts-expect-error - Safe merge for partial union structures
     newSections[index] = {
       ...newSections[index],
+      // @ts-expect-error - Safe merge for partial union structures
       content: {
         ...newSections[index]?.content,
         ...content

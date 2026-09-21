@@ -2,12 +2,23 @@ import { google } from '@ai-sdk/google'
 import { streamObject } from 'ai'
 import { WebsiteSchema } from '@/lib/validations/section'
 import { GenerateWebsiteParamsSchema } from '@/lib/validations/generate'
+import { createClient } from '@/lib/supabase/server'
 
 // Allow streaming responses up to 60 seconds
 export const maxDuration = 60
 
 export async function POST(req: Request) {
   try {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    
+    if (!user) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+
     const body = await req.json()
     const parsed = GenerateWebsiteParamsSchema.safeParse(body)
     
