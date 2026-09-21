@@ -64,7 +64,7 @@ export default async function DashboardPage() {
               </CardHeader>
               <CardFooter className="mt-auto pt-6">
                 <Link href={`/project/${project.id}/editor`} className="w-full">
-                  <Button variant="secondary" className="w-full font-semibold group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 rounded-xl h-10">
+                  <Button variant="secondary" className="w-full font-semibold group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 rounded-full h-10">
                     Open Editor
                     <ArrowRight className="ml-2 w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </Button>
@@ -85,8 +85,9 @@ export default async function DashboardPage() {
               You haven&apos;t created any websites. Let our AI build your first professional site in seconds.
             </p>
             <Link href="/generate">
-              <Button size="lg" className="rounded-full px-8 h-12 text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
+              <Button size="lg" className="rounded-full px-8 h-12 text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all group">
                 Generate First Website
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
