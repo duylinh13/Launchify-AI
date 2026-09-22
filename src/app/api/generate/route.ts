@@ -56,7 +56,7 @@ REQUIREMENTS:
 `
 
     const result = await streamObject({
-      model: google('gemini-pro-latest'),
+      model: google('gemini-flash-latest'),
       schema: WebsiteSchema,
       prompt,
       temperature: 0.7,
