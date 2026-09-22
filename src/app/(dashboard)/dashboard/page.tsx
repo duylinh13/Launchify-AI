@@ -28,7 +28,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] w-full">
+    <div className="relative h-full w-full">
       {/* Soft gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background pointer-events-none -z-10" />
 
