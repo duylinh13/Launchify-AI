@@ -57,53 +57,53 @@ export function GenerateForm() {
   const isFinished = !isLoading && object?.sections && object.sections.length > 0;
 
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-[calc(100vh-120px)] lg:h-[calc(100vh-120px)] relative">
+    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 h-[calc(100vh-100px)] w-full relative">
       {/* Background decoration */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       {/* Input Form Column */}
-      <div className="lg:col-span-4 h-[600px] lg:h-[calc(100vh-120px)] sticky top-6 shrink-0 flex flex-col">
-        <Card className="border-primary/10 shadow-xl shadow-primary/5 bg-background/60 backdrop-blur-md rounded-3xl overflow-hidden flex flex-col h-full relative">
-          <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-8 shrink-0">
+      <div className="lg:col-span-4 h-full shrink-0 flex flex-col min-h-0">
+        <Card className="border-primary/10 shadow-2xl shadow-primary/10 bg-background/60 backdrop-blur-2xl rounded-3xl overflow-hidden flex flex-col h-full ring-1 ring-white/10 relative">
+          <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-6 shrink-0">
             <CardTitle className="text-2xl font-extrabold flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-primary" />
               Website Architect
             </CardTitle>
-            <CardDescription className="text-base">
+            <CardDescription className="text-sm">
               Detail your vision, and watch our AI instantly construct your high-converting landing page.
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
-            <CardContent className="pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-5 pb-24">
-              <div className="space-y-2">
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+            <CardContent className="pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-4 pb-6">
+              <div className="space-y-1.5">
                 <Label htmlFor="businessName" className="flex items-center gap-2 text-muted-foreground"><Briefcase className="w-4 h-4"/> Business Name</Label>
-                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="businessType" className="flex items-center gap-2 text-muted-foreground"><LayoutDashboard className="w-4 h-4"/> Business Type</Label>
-                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="audience" className="flex items-center gap-2 text-muted-foreground"><Users className="w-4 h-4"/> Target Audience</Label>
-                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="goal" className="flex items-center gap-2 text-muted-foreground"><Target className="w-4 h-4"/> Primary Goal</Label>
-                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="tone" className="flex items-center gap-2 text-muted-foreground"><Sparkles className="w-4 h-4"/> Brand Tone</Label>
-                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="style" className="flex items-center gap-2 text-muted-foreground"><Paintbrush className="w-4 h-4"/> Visual Style</Label>
-                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
               </div>
-              <div className="space-y-2 pb-2">
+              <div className="space-y-1.5 pb-2">
                 <Label htmlFor="primaryColor" className="flex items-center gap-2 text-muted-foreground"><Paintbrush className="w-4 h-4"/> Primary Color (Hex)</Label>
                 <div className="flex gap-3">
-                  <Input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-14 h-11 p-1 rounded-xl cursor-pointer bg-background/50 border-border" />
-                  <Input type="text" id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required className="h-11 flex-1 rounded-xl font-mono bg-background/50 uppercase" />
+                  <Input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-14 h-10 p-1 rounded-xl cursor-pointer bg-background/50 border-border" />
+                  <Input type="text" id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required className="h-10 flex-1 rounded-xl font-mono bg-background/50 uppercase" />
                 </div>
               </div>
               
@@ -114,7 +114,7 @@ export function GenerateForm() {
               )}
             </CardContent>
             
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-background/90 backdrop-blur-xl border-t border-border/50 shrink-0 z-10 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.1)]">
+            <div className="p-4 bg-background/90 backdrop-blur-xl border-t border-border/50 shrink-0 z-10 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.1)]">
               <Button type="submit" disabled={isLoading} className="w-full h-12 rounded-full text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 border-0 group">
                 {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />}
                 {isLoading ? 'Architecting Website...' : 'Generate Website'}
@@ -125,7 +125,7 @@ export function GenerateForm() {
       </div>
 
       {/* Preview Column (Streaming) */}
-      <div className="lg:col-span-8 border rounded-3xl bg-muted/20 overflow-hidden flex flex-col shadow-2xl relative ring-1 ring-border/50 h-[600px] lg:h-auto mb-8 lg:mb-0">
+      <div className="lg:col-span-8 border rounded-3xl bg-muted/10 overflow-hidden flex flex-col shadow-2xl relative ring-1 ring-border/50 h-full">
         {/* Browser Mockup Header */}
         <div className="bg-background/80 backdrop-blur-md p-3 border-b flex justify-between items-center h-14 shrink-0 absolute top-0 left-0 right-0 z-20">
           <div className="flex gap-2 items-center pl-2">
