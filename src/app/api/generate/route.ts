@@ -1,8 +1,12 @@
-import { google } from '@ai-sdk/google'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
 import { streamObject } from 'ai'
 import { WebsiteSchema } from '@/lib/validations/section'
 import { GenerateWebsiteParamsSchema } from '@/lib/validations/generate'
 import { createClient } from '@/lib/supabase/server'
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+})
 
 // Allow streaming responses up to 60 seconds
 export const maxDuration = 60
