@@ -32,10 +32,14 @@ export async function signup(prevState: any, formData: FormData) {
     password: formData.get('password') as string,
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  const { data: authData, error } = await supabase.auth.signUp(data)
 
   if (error) {
     return { error: error.message }
+  }
+
+  if (!authData.session) {
+    return { error: 'Vui lòng tắt "Confirm email" trong Supabase (Auth > Providers > Email) hoặc check email để xác thực!' }
   }
 
   revalidatePath('/', 'layout')
