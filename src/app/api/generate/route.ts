@@ -57,10 +57,11 @@ REQUIREMENTS:
 `
 
     const result = await streamObject({
-      model: google('gemini-flash-latest'),
+      model: google('gemini-1.5-flash'),
       schema: WebsiteSchema,
       prompt,
       temperature: 0.7,
+      maxRetries: 0,
     })
 
     return result.toTextStreamResponse()

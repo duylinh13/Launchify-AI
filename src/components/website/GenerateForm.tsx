@@ -30,6 +30,9 @@ export function GenerateForm() {
   const { object, submit, isLoading, error } = useObject({
     api: '/api/generate',
     schema: WebsiteSchema,
+    onError: (err) => {
+      toast.error(err.message || 'The AI servers are currently overloaded. Please try again in a few moments.')
+    }
   })
 
   const handleSubmit = (e: React.FormEvent) => {
