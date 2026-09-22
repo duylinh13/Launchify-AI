@@ -74,41 +74,42 @@ export function GenerateForm() {
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
-            <CardContent className="pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-4 pb-6">
-              <div className="space-y-1.5">
-                <Label htmlFor="businessName" className="flex items-center gap-2 text-muted-foreground"><Briefcase className="w-4 h-4"/> Business Name</Label>
-                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+            <CardContent className="px-8 pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-6 pb-8">
+              <div className="space-y-2">
+                <Label htmlFor="businessName" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Briefcase className="w-4 h-4 text-primary/70"/> Business Name</Label>
+                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="businessType" className="flex items-center gap-2 text-muted-foreground"><LayoutDashboard className="w-4 h-4"/> Business Type</Label>
-                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+              <div className="space-y-2">
+                <Label htmlFor="businessType" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><LayoutDashboard className="w-4 h-4 text-primary/70"/> Business Type</Label>
+                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="audience" className="flex items-center gap-2 text-muted-foreground"><Users className="w-4 h-4"/> Target Audience</Label>
-                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+              <div className="space-y-2">
+                <Label htmlFor="audience" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Users className="w-4 h-4 text-primary/70"/> Target Audience</Label>
+                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="goal" className="flex items-center gap-2 text-muted-foreground"><Target className="w-4 h-4"/> Primary Goal</Label>
-                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+              <div className="space-y-2">
+                <Label htmlFor="goal" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Target className="w-4 h-4 text-primary/70"/> Primary Goal</Label>
+                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="tone" className="flex items-center gap-2 text-muted-foreground"><Sparkles className="w-4 h-4"/> Brand Tone</Label>
-                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+              <div className="space-y-2">
+                <Label htmlFor="tone" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Sparkles className="w-4 h-4 text-primary/70"/> Brand Tone</Label>
+                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="style" className="flex items-center gap-2 text-muted-foreground"><Paintbrush className="w-4 h-4"/> Visual Style</Label>
-                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-10 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
+              <div className="space-y-2">
+                <Label htmlFor="style" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Paintbrush className="w-4 h-4 text-primary/70"/> Visual Style</Label>
+                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-1.5 pb-2">
-                <Label htmlFor="primaryColor" className="flex items-center gap-2 text-muted-foreground"><Paintbrush className="w-4 h-4"/> Primary Color (Hex)</Label>
+              <div className="space-y-2 pb-2">
+                <Label htmlFor="primaryColor" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Paintbrush className="w-4 h-4 text-primary/70"/> Primary Color (Hex)</Label>
                 <div className="flex gap-3">
-                  <Input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-14 h-10 p-1 rounded-xl cursor-pointer bg-background/50 border-border" />
-                  <Input type="text" id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required className="h-10 flex-1 rounded-xl font-mono bg-background/50 uppercase" />
+                  <Input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-16 h-12 p-1.5 rounded-xl cursor-pointer bg-background/40 border-border/50 shadow-sm" />
+                  <Input type="text" id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required className="h-12 px-4 flex-1 rounded-xl font-mono bg-background/40 border-border/50 focus-visible:ring-primary/50 uppercase text-base shadow-sm" />
                 </div>
               </div>
               
               {error && (
-                <div className="p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm text-destructive font-medium">
+                <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-sm text-destructive font-medium flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 shrink-0" />
                   {error.message}
                 </div>
               )}
