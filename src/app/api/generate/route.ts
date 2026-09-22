@@ -49,10 +49,11 @@ BUSINESS DETAILS:
 - Primary Color: ${params.primaryColor}
 
 REQUIREMENTS:
-1. Generate a complete website structure with appropriate sections.
-2. You MUST include at least a "hero", "about", and "faq" section.
-3. The copy should be engaging, persuasive, and tailored to the target audience.
-4. Keep the design specifications aligned with the requested style.
+1. Generate a COMPLETE, highly-converting website structure.
+2. You MUST include exactly these 6 sections in order: "hero", "features", "about", "pricing", "faq", and "contact".
+3. The copy must be extremely persuasive, engaging, and tailored to the target audience.
+4. For the contact section, design it as a compelling lead-generation form block.
+5. Keep the tone aligned with: ${params.tone}.
 `
 
     const result = await streamObject({

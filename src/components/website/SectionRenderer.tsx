@@ -6,6 +6,9 @@ import type { Section } from '@/lib/validations/section'
 import { Hero } from './sections/hero'
 import { About } from './sections/about'
 import { FAQ } from './sections/faq'
+import { Features } from './sections/features'
+import { Pricing } from './sections/pricing'
+import { Contact } from './sections/contact'
 
 import { DeepPartial } from 'ai'
 
@@ -13,7 +16,10 @@ import { DeepPartial } from 'ai'
 const SectionRegistry: Record<string, React.ComponentType<any>> = {
   hero: Hero,
   about: About,
+  features: Features,
+  pricing: Pricing,
   faq: FAQ,
+  contact: Contact,
 }
 
 interface SectionRendererProps {
