@@ -62,9 +62,9 @@ export function GenerateForm() {
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       {/* Input Form Column */}
-      <div className="lg:col-span-4 lg:overflow-y-auto lg:pr-2 pb-8 custom-scrollbar shrink-0">
-        <Card className="border-primary/10 shadow-xl shadow-primary/5 bg-background/60 backdrop-blur-md rounded-3xl overflow-hidden">
-          <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-8">
+      <div className="lg:col-span-4 h-[600px] lg:h-[calc(100vh-120px)] sticky top-6 shrink-0 flex flex-col">
+        <Card className="border-primary/10 shadow-xl shadow-primary/5 bg-background/60 backdrop-blur-md rounded-3xl overflow-hidden flex flex-col h-full relative">
+          <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-8 shrink-0">
             <CardTitle className="text-2xl font-extrabold flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-primary" />
               Website Architect
@@ -73,8 +73,8 @@ export function GenerateForm() {
               Detail your vision, and watch our AI instantly construct your high-converting landing page.
             </CardDescription>
           </CardHeader>
-          <CardContent className="pt-6">
-            <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
+            <CardContent className="pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-5 pb-24">
               <div className="space-y-2">
                 <Label htmlFor="businessName" className="flex items-center gap-2 text-muted-foreground"><Briefcase className="w-4 h-4"/> Business Name</Label>
                 <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-11 rounded-xl bg-background/50 focus-visible:ring-primary/50 transition-all" />
@@ -112,13 +112,15 @@ export function GenerateForm() {
                   {error.message}
                 </div>
               )}
-
+            </CardContent>
+            
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-background/90 backdrop-blur-xl border-t border-border/50 shrink-0 z-10 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.1)]">
               <Button type="submit" disabled={isLoading} className="w-full h-12 rounded-full text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 border-0 group">
                 {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />}
                 {isLoading ? 'Architecting Website...' : 'Generate Website'}
               </Button>
-            </form>
-          </CardContent>
+            </div>
+          </form>
         </Card>
       </div>
 
