@@ -63,47 +63,50 @@ export function GenerateForm() {
 
       {/* Input Form Column */}
       <div className="xl:col-span-4 h-[600px] xl:h-full shrink-0 flex flex-col min-h-0">
-        <Card className="border-border/50 shadow-2xl bg-background/95 backdrop-blur-xl rounded-3xl overflow-hidden flex flex-col h-full ring-1 ring-black/5 relative">
-          <CardHeader className="bg-muted/30 border-b border-border/50 pb-6 shrink-0">
-            <CardTitle className="text-2xl font-extrabold flex items-center gap-2 text-foreground">
+        <Card className="border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl overflow-hidden flex flex-col h-full relative">
+          <CardHeader className="bg-white border-b border-slate-100 pb-6 shrink-0 relative z-10">
+            <CardTitle className="text-2xl font-extrabold flex items-center gap-2 text-slate-900">
               <Sparkles className="w-5 h-5 text-primary" />
               Website Architect
             </CardTitle>
-            <CardDescription className="text-sm text-muted-foreground mt-2 leading-relaxed">
+            <CardDescription className="text-sm text-slate-500 mt-2 leading-relaxed">
               Detail your vision, and watch our AI instantly construct your high-converting landing page.
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 bg-muted/10">
-            <CardContent className="px-8 pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-6 pb-8">
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 bg-slate-50/40">
+            <CardContent className="px-8 pt-8 overflow-y-auto custom-scrollbar flex-1 space-y-6 pb-8">
               <div className="space-y-2">
-                <Label htmlFor="businessName" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Briefcase className="w-4 h-4 text-primary/70"/> Business Name</Label>
-                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
+                <Label htmlFor="businessName" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Briefcase className="w-4 h-4 text-primary/70"/> Business Name</Label>
+                <Input id="businessName" name="businessName" value={formData.businessName} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-base shadow-sm" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="businessType" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><LayoutDashboard className="w-4 h-4 text-primary/70"/> Business Type</Label>
-                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
+                <Label htmlFor="businessType" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><LayoutDashboard className="w-4 h-4 text-primary/70"/> Business Type</Label>
+                <Input id="businessType" name="businessType" value={formData.businessType} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-base shadow-sm" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="audience" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Users className="w-4 h-4 text-primary/70"/> Target Audience</Label>
-                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
+                <Label htmlFor="audience" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Users className="w-4 h-4 text-primary/70"/> Target Audience</Label>
+                <Input id="audience" name="audience" value={formData.audience} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-base shadow-sm" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="goal" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Target className="w-4 h-4 text-primary/70"/> Primary Goal</Label>
-                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
+                <Label htmlFor="goal" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Target className="w-4 h-4 text-primary/70"/> Primary Goal</Label>
+                <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-base shadow-sm" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="tone" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Sparkles className="w-4 h-4 text-primary/70"/> Brand Tone</Label>
-                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
+                <Label htmlFor="tone" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Sparkles className="w-4 h-4 text-primary/70"/> Brand Tone</Label>
+                <Input id="tone" name="tone" value={formData.tone} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-base shadow-sm" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="style" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Paintbrush className="w-4 h-4 text-primary/70"/> Visual Style</Label>
-                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-background/40 border-border/50 focus-visible:ring-primary/50 focus-visible:bg-background/80 transition-all text-base shadow-sm" />
+                <Label htmlFor="style" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Paintbrush className="w-4 h-4 text-primary/70"/> Visual Style</Label>
+                <Input id="style" name="style" value={formData.style} onChange={handleChange} required className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-base shadow-sm" />
               </div>
-              <div className="space-y-2 pb-2">
-                <Label htmlFor="primaryColor" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Paintbrush className="w-4 h-4 text-primary/70"/> Primary Color (Hex)</Label>
-                <div className="flex gap-3">
-                  <Input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-16 h-12 p-1.5 rounded-xl cursor-pointer bg-background/40 border-border/50 shadow-sm" />
-                  <Input type="text" id="primaryColor" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required className="h-12 px-4 flex-1 rounded-xl font-mono bg-background/40 border-border/50 focus-visible:ring-primary/50 uppercase text-base shadow-sm" />
+              <div className="space-y-2">
+                <Label htmlFor="primaryColor" className="flex items-center gap-2 text-sm font-semibold text-slate-600"><Paintbrush className="w-4 h-4 text-primary/70"/> Primary Color (Hex)</Label>
+                <div className="flex gap-3 items-center">
+                  <div className="relative shrink-0 rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
+                    <input type="color" id="primaryColorPicker" name="primaryColor" value={formData.primaryColor} onChange={handleChange} className="w-12 h-12 cursor-pointer bg-transparent border-0 p-0 block absolute -top-2 -left-2 scale-150" />
+                    <div className="w-12 h-12 pointer-events-none" style={{ backgroundColor: formData.primaryColor }}></div>
+                  </div>
+                  <Input id="primaryColorText" name="primaryColor" value={formData.primaryColor} onChange={handleChange} required pattern="^#[0-9A-Fa-f]{6}$" className="h-12 px-4 rounded-xl bg-white border-slate-200 hover:border-slate-300 focus-visible:ring-primary/20 focus-visible:border-primary transition-all font-mono text-base shadow-sm w-full uppercase" />
                 </div>
               </div>
               
@@ -115,9 +118,9 @@ export function GenerateForm() {
               )}
             </CardContent>
             
-            <div className="p-4 bg-background/90 backdrop-blur-xl border-t border-border/50 shrink-0 z-10 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.1)]">
-              <Button type="submit" disabled={isLoading} className="w-full h-12 rounded-full text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 border-0 group">
-                {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />}
+            <div className="p-5 bg-white border-t border-slate-100 shrink-0 z-10">
+              <Button type="submit" disabled={isLoading} className="w-full h-14 rounded-2xl text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all hover:-translate-y-0.5 group bg-primary text-primary-foreground border-0">
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Sparkles className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />}
                 {isLoading ? 'Architecting Website...' : 'Generate Website'}
               </Button>
             </div>
