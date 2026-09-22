@@ -57,23 +57,23 @@ export function GenerateForm() {
   const isFinished = !isLoading && object?.sections && object.sections.length > 0;
 
   return (
-    <div className="flex flex-col xl:grid xl:grid-cols-12 gap-6 min-h-[calc(100vh-100px)] xl:h-[calc(100vh-100px)] w-full relative pb-10 xl:pb-0">
+    <div className="flex flex-col xl:grid xl:grid-cols-12 gap-8 min-h-[calc(100vh-160px)] xl:h-[calc(100vh-160px)] w-full relative pb-10 xl:pb-0">
       {/* Background decoration */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       {/* Input Form Column */}
       <div className="xl:col-span-4 h-[600px] xl:h-full shrink-0 flex flex-col min-h-0">
-        <Card className="border-primary/10 shadow-2xl shadow-primary/10 bg-background/60 backdrop-blur-2xl rounded-3xl overflow-hidden flex flex-col h-full ring-1 ring-white/10 relative">
-          <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-6 shrink-0">
-            <CardTitle className="text-2xl font-extrabold flex items-center gap-2">
+        <Card className="border-border/50 shadow-2xl bg-background/95 backdrop-blur-xl rounded-3xl overflow-hidden flex flex-col h-full ring-1 ring-black/5 relative">
+          <CardHeader className="bg-muted/30 border-b border-border/50 pb-6 shrink-0">
+            <CardTitle className="text-2xl font-extrabold flex items-center gap-2 text-foreground">
               <Sparkles className="w-5 h-5 text-primary" />
               Website Architect
             </CardTitle>
-            <CardDescription className="text-sm">
+            <CardDescription className="text-sm text-muted-foreground mt-2 leading-relaxed">
               Detail your vision, and watch our AI instantly construct your high-converting landing page.
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 bg-muted/10">
             <CardContent className="px-8 pt-6 overflow-y-auto custom-scrollbar flex-1 space-y-6 pb-8">
               <div className="space-y-2">
                 <Label htmlFor="businessName" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"><Briefcase className="w-4 h-4 text-primary/70"/> Business Name</Label>
