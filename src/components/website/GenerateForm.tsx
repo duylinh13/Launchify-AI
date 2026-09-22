@@ -64,7 +64,7 @@ export function GenerateForm() {
       {/* Input Form Column */}
       <div className="xl:col-span-4 h-[600px] xl:h-full shrink-0 flex flex-col min-h-0">
         <Card className="border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl overflow-hidden flex flex-col h-full relative">
-          <CardHeader className="bg-white border-b border-slate-100 pb-6 shrink-0 relative z-10">
+          <CardHeader className="px-8 pt-8 pb-6 bg-white border-b border-slate-100 shrink-0 relative z-10">
             <CardTitle className="text-2xl font-extrabold flex items-center gap-2 text-slate-900">
               <Sparkles className="w-5 h-5 text-primary" />
               Website Architect
@@ -118,7 +118,7 @@ export function GenerateForm() {
               )}
             </CardContent>
             
-            <div className="p-5 bg-white border-t border-slate-100 shrink-0 z-10">
+            <div className="p-6 px-8 bg-white border-t border-slate-100 shrink-0 z-10">
               <Button type="submit" disabled={isLoading} className="w-full h-14 rounded-2xl text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all hover:-translate-y-0.5 group bg-primary text-primary-foreground border-0">
                 {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Sparkles className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />}
                 {isLoading ? 'Architecting Website...' : 'Generate Website'}
