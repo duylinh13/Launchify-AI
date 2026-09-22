@@ -1,130 +1,91 @@
-<div align="center">
-  <img src="public/cover.png" alt="Launchify AI Banner" width="100%" />
-
-  # ?? Launchify AI
-
-  **An AI-powered Website & Landing Page Builder generating structured, editable React components in real-time.**
-
-  [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-  [![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)](https://reactjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-  [![Supabase](https://img.shields.io/badge/Supabase-Auth_%7C_DB-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
-  [![Vercel AI SDK](https://img.shields.io/badge/Vercel_AI_SDK-Gemini_1.5_Pro-black?style=flat-square&logo=vercel)](https://sdk.vercel.ai/)
+Ôªø<div align="center">
+  <h1>‚ú® Launchify AI</h1>
+  <p><strong>The Next-Generation AI Landing Page Builder</strong></p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+    <img src="https://img.shields.io/badge/Vercel_AI_SDK-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel AI SDK" />
+  </p>
 </div>
 
 ---
 
-## ?? Overview
+## üöÄ Overview
 
-**Launchify AI** is not just another wrapper around ChatGPT. It is a portfolio-grade, full-stack application designed to showcase **Frontend Engineering Excellence**. 
+**Launchify AI** is an advanced, production-ready SaaS application that allows users to instantly generate high-converting, fully responsive landing pages using generative AI. 
 
-Instead of generating raw, unpredictable HTML, Launchify AI uses a strict **Generative UI pipeline**. The AI evaluates user requirements and streams a rigorously typed JSON configuration (validated via Zod), which is mapped dynamically to highly polished, reusable React components. 
+Built as a showcase of modern Frontend Architecture and Fullstack capabilities, this project heavily utilizes **React Server Components (RSC)**, **Real-time AI Streaming**, and **Complex State Management**.
 
-Users can then visually edit, reorder, and save their generated websites using a high-performance drag-and-drop editor.
+## ‚ú® Core Features
 
----
+- **üß† Real-time AI Generation:** Uses the Vercel AI SDK and Google's Gemini models to stream complex UI structures in real-time.
+- **üé® Glassmorphism Design System:** Implements a strict, premium UI/UX standard inspired by Apple HIG, featuring liquid mesh gradients, subtle backdrop blurs, and pixel-perfect padding.
+- **üîí Secure Authentication:** Passwordless Magic Link authentication powered by Supabase Auth.
+- **üíæ Global State & Persistence:** Utilizes Zustand for lightweight global state management and Supabase PostgreSQL for saving generated websites.
+- **üì± 100% Responsive Grid:** A fluid layout architecture that seamlessly transitions from desktop Split-Views to mobile stacked layouts without breaking the UI.
 
-## ?? The "Anti-Slop" Design Philosophy
+## üõ†Ô∏è Tech Stack
 
-Built with a deep appreciation for premium aesthetics, Launchify AI strictly avoids generic "AI slop" designs:
-- **Semantic Token Architecture**: Colors and spacing are strictly tokenized using HSL CSS variables and Tailwind.
-- **Living Design System**: Includes a dedicated \/design-system\ route serving as the source of truth for typography hierarchy, component states, and motion primitives.
-- **VIP Pro UI**: Incorporates glassmorphism, subtle glowing gradients, smooth micro-interactions, and meticulously balanced whitespace.
+### Frontend
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + shadcn/ui
+- **State Management:** Zustand
+- **Icons:** Lucide React
 
----
+### AI & Backend
+- **AI Integration:** Vercel AI SDK (streamObject)
+- **LLM:** Google Gemini Flash (gemini-flash-latest)
+- **Database:** Supabase (PostgreSQL)
+- **Authentication:** Supabase Auth (Magic Links)
+- **Data Validation:** Zod (Strict schema enforcement for AI outputs)
 
-## ??? Core Features & Architecture
-
-### 1. ?? Generative UI & Streaming
-- **Vercel AI SDK (useObject)**: Streams chunked JSON responses from Google Gemini 1.5 Pro.
-- **Zod Validation**: Enforces strict schema constraints (WebsiteSchema) to ensure the AI never breaks the UI.
-- **Dynamic Component Mapping**: The SectionRenderer acts as a polymorphic engine, matching AI data layers to physical React UI components (Hero, About, FAQ).
-
-### 2. ? High-Performance Visual Editor
-- **Zustand State Management**: Chosen specifically over React Context to prevent cascading re-renders across the entire canvas when editing deep UI layers.
-- **dnd-kit Integration**: Accessible, smooth drag-and-drop functionality to reorder page sections.
-- **Debounced Inputs**: Live text editing is locally debounced before committing to the global store to guarantee 60fps typing performance.
-
-### 3. ?? Authentication & Multi-Tenancy
-- **Supabase Auth**: Secure email/password login integrated seamlessly with Next.js App Router.
-- **Row Level Security (RLS)**: PostgreSQL policies guarantee strict workspace isolation. Users can only query, mutate, or delete their own website configurations.
-
----
-
-## ?? Project Structure
-
-\\\	ext
-launchify-ai/
-+-- src/
-¶   +-- app/                    # Next.js App Router
-¶   ¶   +-- (auth)/             # Login & Signup routes
-¶   ¶   +-- (dashboard)/        # Protected dashboard, generator, and editor routes
-¶   ¶   +-- api/                # Edge API routes (AI Generation)
-¶   ¶   +-- actions/            # React Server Actions (DB Mutations)
-¶   ¶   +-- design-system/      # Living design guidelines
-¶   +-- components/             
-¶   ¶   +-- auth/               # Auth UI forms
-¶   ¶   +-- editor/             # Zustand-powered interactive editor
-¶   ¶   +-- ui/                 # shadcn/ui base components
-¶   ¶   +-- website/            # Dynamic Generative UI components
-¶   +-- lib/
-¶   ¶   +-- supabase/           # SSR and Client DB clients
-¶   ¶   +-- store/              # Zustand global state management
-¶   ¶   +-- validations/        # Zod schemas (WebsiteSchema)
-¶   +-- globals.css             # HSL Semantic Token Definitions
-+-- supabase/
-¶   +-- migrations/             # SQL schemas, RLS policies, Auth triggers
-+-- tailwind.config.ts          # Tailwind configurations & animations
-\\\
-
----
-
-## ?? Getting Started
+## üíª Getting Started
 
 ### Prerequisites
-- Node.js 18.x or later
+- Node.js 18+
 - A Supabase Project
 - A Google Gemini API Key
 
-### 1. Installation
-Clone the repository and install dependencies using --legacy-peer-deps (required for specific React 18 / shadcn compatibility):
+### Installation
 
-\\\ash
-git clone https://github.com/yourusername/launchify-ai.git
-cd launchify-ai
-npm install --legacy-peer-deps
-\\\
+1. **Clone the repository**
+   \\\ash
+   git clone https://github.com/yourusername/launchify-ai.git
+   cd launchify-ai
+   \\\
 
-### 2. Environment Variables
-Copy the example environment file:
-\\\ash
-cp .env.example .env.local
-\\\
-Fill in your credentials in \.env.local\:
-\\\env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-GEMINI_API_KEY=your_gemini_api_key
-\\\
+2. **Install dependencies**
+   \\\ash
+   npm install
+   \\\
 
-### 3. Database Setup
-Execute the SQL migrations found in \supabase/migrations/\ in your Supabase SQL Editor to create the \projects\ table, set up RLS policies, and configure the new user trigger.
+3. **Set up environment variables**
+   Create a \.env.local\ file in the root directory:
+   \\\env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   GEMINI_API_KEY=your_gemini_api_key
+   \\\
 
-### 4. Run Locally
-Start the development server:
-\\\ash
-npm run dev
-\\\
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. **Run the development server**
+   \\\ash
+   npm run dev
+   \\\
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## üß† Technical Highlights (For Interviews)
+
+This project was built to demonstrate proficiency in solving complex UI and architectural challenges:
+
+1. **Streaming JSON parsing:** Handling partial JSON chunks from the AI and rendering React components progressively before the stream finishes.
+2. **Double Scrollbar Prevention:** Using precise \calc()\ viewport heights and flex-shrink properties to ensure a native-app-like experience.
+3. **Graceful Error Handling:** Catching AI rate-limit (\429\) and quota (\403\) errors gracefully on the server and reflecting them in the UI without crashing the client.
 
 ---
-
-## ????? Author & Interview Context
-
-**Launchify AI** was built to demonstrate proficiency in:
-- React Rendering Lifecycle & Reconciliation.
-- State Management architectural decisions (Zustand vs. Context).
-- Safe integration of Large Language Models into production user interfaces.
-- Modern Next.js patterns (Server Components vs. Client Components, Server Actions).
-
-*Ready for technical deep-dives.*
+<div align="center">
+  <p>Built with ‚ù§Ô∏è by a Senior Frontend Developer.</p>
+</div>
