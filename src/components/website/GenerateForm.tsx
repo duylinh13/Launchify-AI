@@ -57,12 +57,12 @@ export function GenerateForm() {
   const isFinished = !isLoading && object?.sections && object.sections.length > 0;
 
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 h-[calc(100vh-100px)] w-full relative">
+    <div className="flex flex-col xl:grid xl:grid-cols-12 gap-6 min-h-[calc(100vh-100px)] xl:h-[calc(100vh-100px)] w-full relative pb-10 xl:pb-0">
       {/* Background decoration */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       {/* Input Form Column */}
-      <div className="lg:col-span-4 h-full shrink-0 flex flex-col min-h-0">
+      <div className="xl:col-span-4 h-[600px] xl:h-full shrink-0 flex flex-col min-h-0">
         <Card className="border-primary/10 shadow-2xl shadow-primary/10 bg-background/60 backdrop-blur-2xl rounded-3xl overflow-hidden flex flex-col h-full ring-1 ring-white/10 relative">
           <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent border-b border-primary/5 pb-6 shrink-0">
             <CardTitle className="text-2xl font-extrabold flex items-center gap-2">
@@ -126,7 +126,7 @@ export function GenerateForm() {
       </div>
 
       {/* Preview Column (Streaming) */}
-      <div className="lg:col-span-8 border rounded-3xl bg-muted/10 overflow-hidden flex flex-col shadow-2xl relative ring-1 ring-border/50 h-full">
+      <div className="xl:col-span-8 border rounded-3xl bg-muted/10 overflow-hidden flex flex-col shadow-2xl relative ring-1 ring-border/50 min-h-[600px] xl:min-h-0 h-full">
         {/* Browser Mockup Header */}
         <div className="bg-background/80 backdrop-blur-md p-3 border-b flex justify-between items-center h-14 shrink-0 absolute top-0 left-0 right-0 z-20">
           <div className="flex gap-2 items-center pl-2">
